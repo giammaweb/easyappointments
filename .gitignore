@@ -1,0 +1,20 @@
+# ==================================================
+# PARAMETERS AND CREDENTIALS
+# ==================================================
+params.env
+params.test.env
+params.production.env
+
+# ==================================================
+# LOGS AND CACHE
+# ==================================================
+storage/cache/*
+application/cache/*
+storage/logs/*
+storage/sessions/*
+
+# Preserva eventuali file di indice per sicurezza
+!storage/cache/index.html
+!application/cache/index.html
+!storage/logs/index.html
+!storage/sessions/index.html
