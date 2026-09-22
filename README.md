@@ -22,11 +22,77 @@ Per riapplicare queste modifiche su una release futura di Easy!Appointments, far
 
 1. **Centralizzazione Parametri d'Ambiente e `.gitignore`**
    - **Descrizione:** Separazione delle credenziali d'ambiente (`params.env`) e protezione dei file di cache e sessione.
-   - **Commit:** [`ce909d80226b3803b1c604ba90ecfffc2c3f1696`](https://github.com/giammaweb/easyappointments/commit/ce909d80226b3803b1c604ba90ecfffc2c3f1696)
+   - **Commit:** [`ce909d8`](https://github.com/giammaweb/easyappointments/commit/ce909d8)
 
 2. **Gestione Dinamica dell'URL Base nei Messaggi**
-   - **Descrizione:** Introduzione dello shortcode `BASE_URL_PLACEHOLDER` per caricare gli asset dinamici (es. immagini nei messaggi di sospensione) direttamente dall'URL d'ambiente.
-   - **Commit:** [`35241d848be1156cf6aeeb6a3ea1037e57ce4b97`](https://github.com/giammaweb/easyappointments/commit/35241d848be1156cf6aeeb6a3ea1037e57ce4b97)
+   - **Descrizione:** Introduzione dello shortcode `{BASE_URL}` per caricare gli asset dinamici (es. immagini nei messaggi di sospensione) direttamente dall'URL d'ambiente.
+   - **File modificati:** `application/views/appointments/book.php` (o controller `Booking.php`)
+   - **Commit:** [Incolla qui il link al tuo commit dello Step 2]
+
+
+Hai perfettamente ragione. Se il backoffice di EasyAppointments legge direttamente i file presenti dentro `assets/css/themes/`, la scelta migliore per garantire un flusso di lavoro **pulito, lineare e indipendente da VS Code/IDE** è compilare da terminale tramite l'utility **Sass**.
+
+In questo modo i file rimangono nella loro posizione naturale e la procedura può essere documentata per i tuoi colleghi in modo universale (funzionerà su Zorin OS, Ubuntu, macOS o qualsiasi server Linux).
+
+---
+
+### Procedura di Compilazione del Tema Custom via Terminale
+
+
+#### 1. Requisito
+
+Installare il compilatore **Dart Sass** (o `sassc`) sul sistema:
+
+```bash
+sudo apt update && sudo apt install sassc
+
+```
+
+*(In alternativa, se è già presente Node.js nel sistema: `sudo npm install -g sass`)*
+
+---
+
+#### 2. Comandi di Compilazione
+
+Quando viene modificato il file sorgente `assets/css/themes/accesiblecolors.scss`, eseguire da terminale nella radice del progetto:
+
+```bash
+# 1. Posizionarsi nella cartella dei temi
+cd assets/css/themes/
+
+# 2. Compilare la versione CSS leggibile
+sassc accesiblecolors.scss accesiblecolors.css
+
+# 3. Compilare la versione minificata per la produzione
+sassc -t compressed accesiblecolors.scss accesiblecolors.min.css
+
+```
+
+
+
+> **Nota per la variante `sass` (npm):**
+> Se usi il pacchetto `sass` installato via npm, la sintassi per la minificazione è:
+> `sass accesiblecolors.scss accesiblecolors.min.css --style=compressed`
+
+#### 3. Modalità "Watch" per lo Sviluppo (Opzionale)
+
+Se stai lavorando attivamente sul file e vuoi che ogni salvataggio compili automaticamente il tema senza dover rieseguire il comando a mano:
+
+```bash
+sass --watch assets/css/themes/accesiblecolors.scss:assets/css/themes/accesiblecolors.css
+
+```
+
+---
+
+> ⚠️ **ATTENZIONE — Gestione file SCSS nativi:**
+> I file `.scss` dei temi vanilla presenti in `assets/css/themes/` (es. `litera.scss`, `sketchy.scss`) dipendono direttamente dai sorgenti SCSS di Bootstrap, normalmente collocati nella cartella `node_modules`.
+> 
+> Poiché i pacchetti release/zip di EasyAppointments distribuiscono l'applicazione senza la cartella `node_modules` (evitando le dipendenze da Node/npm), la compilazione diretta dei file `.scss` nativi genera errori di risorse o variabili mancanti (es. `$font-size-sm`).
+> 
+> **Procedura raccomandata:**
+> - Non compilare i file `.scss` di default senza aver prima installato la toolchain completa (`npm install`).
+> - Per le personalizzazioni custom (es. `accesiblecolors`), lavorare sul file CSS compilato di base (`.css`) ed estenderlo in fondo, rigenerando poi la versione `.min.css` tramite `cp` o `sassc`.
 
 ---
 
