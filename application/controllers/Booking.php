@@ -138,6 +138,9 @@ class Booking extends EA_Controller
         if ($disable_booking) {
             $disable_booking_message = setting('disable_booking_message');
 
+            // REPLACE BASE_URL_PLACEHOLDER/ PLACEHOLDER WITH THE ACTUAL BASE URL IN THE DISABLE BOOKING MESSAGE
+            $disable_booking_message = str_replace('BASE_URL_PLACEHOLDER', config('base_url'), $disable_booking_message);
+
             html_vars([
                 'show_message' => true,
                 'page_title' => lang('page_title') . ' ' . e($company_name),

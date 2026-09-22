@@ -12,8 +12,19 @@ storage/cache/*
 application/cache/*
 storage/logs/*
 storage/sessions/*
+#HTMLPurifier cache (vendor library)
+vendor/ezyang/htmlpurifier/library/HTMLPurifier/DefinitionCache/
 
-# Preserva eventuali file di indice per sicurezza
+# ==================================================
+# LOGOS AND FAVICONS
+# ==================================================
+
+assets/img/reservations-temporarily-suspended.jpg
+
+# ==================================================
+# Keep any index files for safekeeping
+# ==================================================
+
 !storage/cache/index.html
 !application/cache/index.html
 !storage/logs/index.html
