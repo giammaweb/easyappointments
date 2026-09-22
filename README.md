@@ -9,74 +9,70 @@
 </h1>
 
 
----
+## 🛠️ Fork Customizations (`giammaweb`)
 
-## 🛠️ Personalizzazioni Fork (`giammaweb`)
+This version is a fork maintained by **Gian Marco Artioli**, based on release **v1.6.0**. 
+It includes specific adaptations for local infrastructure management and custom integration.
 
-Questa versione è un fork gestito da **Gian Marco Artioli** basato sulla release **v1.6.0**. 
-Include adattamenti specifici per la gestione dell'infrastruttura locale e dell'integrazione personalizzata.
+### Change Log & Guide for Future Releases
 
-### Registro delle Modifiche & Guida per nuove Release
+To reapply these customizations on a future Easy!Appointments release, refer to the official commits:
 
-Per riapplicare queste modifiche su una release futura di Easy!Appointments, fare riferimento ai commit ufficiali:
-
-1. **Centralizzazione Parametri d'Ambiente e `.gitignore`**
-   - **Descrizione:** Separazione delle credenziali d'ambiente (`params.env`) e protezione dei file di cache e sessione.
+1. **Environment Parameters Centralization & `.gitignore`**
+   - **Description:** Separation of environment credentials (`params.env`) and protection of cache and session files.
    - **Commit:** [`ce909d8`](https://github.com/giammaweb/easyappointments/commit/ce909d8)
 
-2. **Gestione Dinamica dell'URL Base nei Messaggi**
-   - **Descrizione:** Introduzione dello shortcode `{BASE_URL}` per caricare gli asset dinamici (es. immagini nei messaggi di sospensione) direttamente dall'URL d'ambiente.
-   - **File modificati:** `application/views/appointments/book.php` (o controller `Booking.php`)
-   - **Commit:** [Incolla qui il link al tuo commit dello Step 2]
+2. **Dynamic Base URL Handling in Messages**
+   - **Description:** Introduced the `BASE_URL_PLACEHOLDER` shortcode to load dynamic assets (e.g., images in suspension messages) directly from the environment URL.
+   - **Commit:** [`35241d8`](https://github.com/giammaweb/easyappointments/commit/35241d8)
 
-
-Hai perfettamente ragione. Se il backoffice di EasyAppointments legge direttamente i file presenti dentro `assets/css/themes/`, la scelta migliore per garantire un flusso di lavoro **pulito, lineare e indipendente da VS Code/IDE** è compilare da terminale tramite l'utility **Sass**.
-
-In questo modo i file rimangono nella loro posizione naturale e la procedura può essere documentata per i tuoi colleghi in modo universale (funzionerà su Zorin OS, Ubuntu, macOS o qualsiasi server Linux).
+3. **Added a Personalized Theme for Accessibility**
+   - **Description:** Added the `accesiblecolors.css` theme. Based on the corporate color set in the back office, it configures secondary colors to ensure higher contrast, aligning with WCAG accessibility guidelines.
+   - **Commit:** [`b5069a8`](https://github.com/giammaweb/easyappointments/commit/b5069a8)
 
 ---
 
-### Procedura di Compilazione del Tema Custom via Terminale
+### Custom Theme Compilation via Terminal
 
+#### 1. Requirement
 
-#### 1. Requisito
-
-Installare il compilatore **Dart Sass** (o `sassc`) sul sistema:
+Install the **Dart Sass** compiler (or `sassc`) on your system:
 
 ```bash
 sudo apt update && sudo apt install sassc
 
+
 ```
 
-*(In alternativa, se è già presente Node.js nel sistema: `sudo npm install -g sass`)*
+*(Alternatively, if Node.js is installed: `sudo npm install -g sass`)*
 
 ---
 
-#### 2. Comandi di Compilazione
+#### 2. Compilation Commands
 
-Quando viene modificato il file sorgente `assets/css/themes/accesiblecolors.scss`, eseguire da terminale nella radice del progetto:
+When modifying the source file `assets/css/themes/accesiblecolors.scss`, run the following commands from the project root:
 
 ```bash
-# 1. Posizionarsi nella cartella dei temi
+# 1. Navigate to the themes directory
 cd assets/css/themes/
 
-# 2. Compilare la versione CSS leggibile
+# 2. Compile readable CSS version
 sassc accesiblecolors.scss accesiblecolors.css
 
-# 3. Compilare la versione minificata per la produzione
+# 3. Compile minified CSS version for production
 sassc -t compressed accesiblecolors.scss accesiblecolors.min.css
 
 ```
 
 
 
-> **Nota per la variante `sass` (npm):**
-> Se usi il pacchetto `sass` installato via npm, la sintassi per la minificazione è:
+> **Note for the `sass` (npm) variant:**
+> If you are using the npm `sass` package, the syntax for minification is:
 > `sass accesiblecolors.scss accesiblecolors.min.css --style=compressed`
 
-#### 3. Modalità "Watch" per lo Sviluppo (Opzionale)
+#### 3. Development Watch Mode (Optional)
 
-Se stai lavorando attivamente sul file e vuoi che ogni salvataggio compili automaticamente il tema senza dover rieseguire il comando a mano:
+If you are actively working on the file and want automatic recompilation on save:
 
 ```bash
 sass --watch assets/css/themes/accesiblecolors.scss:assets/css/themes/accesiblecolors.css
@@ -85,14 +81,14 @@ sass --watch assets/css/themes/accesiblecolors.scss:assets/css/themes/accesiblec
 
 ---
 
-> ⚠️ **ATTENZIONE — Gestione file SCSS nativi:**
-> I file `.scss` dei temi vanilla presenti in `assets/css/themes/` (es. `litera.scss`, `sketchy.scss`) dipendono direttamente dai sorgenti SCSS di Bootstrap, normalmente collocati nella cartella `node_modules`.
+> ⚠️ **WARNING — Native SCSS Files Management:**
+> The vanilla `.scss` theme files in `assets/css/themes/` (e.g., `litera.scss`, `sketchy.scss`) rely directly on Bootstrap's SCSS source files, typically located in `node_modules`.
 > 
-> Poiché i pacchetti release/zip di EasyAppointments distribuiscono l'applicazione senza la cartella `node_modules` (evitando le dipendenze da Node/npm), la compilazione diretta dei file `.scss` nativi genera errori di risorse o variabili mancanti (es. `$font-size-sm`).
+> Since Easy!Appointments release zip packages do not include the `node_modules` directory (avoiding Node/npm dependencies), compiling native `.scss` files directly will trigger resource or missing variable errors (e.g., `$font-size-sm`).
 > 
-> **Procedura raccomandata:**
-> - Non compilare i file `.scss` di default senza aver prima installato la toolchain completa (`npm install`).
-> - Per le personalizzazioni custom (es. `accesiblecolors`), lavorare sul file CSS compilato di base (`.css`) ed estenderlo in fondo, rigenerando poi la versione `.min.css` tramite `cp` o `sassc`.
+> **Recommended Workflow::**
+> - Do not compile default `.scss` files without first installing the full development toolchain (`npm install`).
+> - For custom themes (e.g., `accesiblecolors`), edit the base compiled CSS file (`.css`) by appending custom rules at the end, then regenerate the `.min.css` version via `cp` or `sassc`.
 
 ---
 
