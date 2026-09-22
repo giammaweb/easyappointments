@@ -8,6 +8,30 @@
     <br>
 </h1>
 
+
+---
+
+## 🛠️ Personalizzazioni Fork (`giammaweb`)
+
+Questa versione è un fork gestito da **Gian Marco Artioli** basato sulla release **v1.6.0**. 
+Include adattamenti specifici per la gestione dell'infrastruttura locale e dell'integrazione personalizzata.
+
+### Registro delle Modifiche & Guida per nuove Release
+
+Per riapplicare queste modifiche su una release futura di Easy!Appointments, fare riferimento ai commit ufficiali:
+
+1. **Centralizzazione Parametri d'Ambiente e `.gitignore`**
+   - **Descrizione:** Separazione delle credenziali d'ambiente (`params.env`) e protezione dei file di cache e sessione.
+   - **Commit:** [`ce909d80226b3803b1c604ba90ecfffc2c3f1696`](https://github.com/giammaweb/easyappointments/commit/ce909d80226b3803b1c604ba90ecfffc2c3f1696)
+
+2. **Gestione Dinamica dell'URL Base nei Messaggi**
+   - **Descrizione:** Introduzione dello shortcode `BASE_URL_PLACEHOLDER` per caricare gli asset dinamici (es. immagini nei messaggi di sospensione) direttamente dall'URL d'ambiente.
+   - **Commit:** [`35241d848be1156cf6aeeb6a3ea1037e57ce4b97`](https://github.com/giammaweb/easyappointments/commit/35241d848be1156cf6aeeb6a3ea1037e57ce4b97)
+
+---
+
+
+
 <h4 align="center">
     A powerful, self-hosted appointment scheduling platform built for flexibility.
 </h4>
@@ -39,7 +63,7 @@
 
 ---
 
-![screenshot](screenshot.png)
+
 
 ## 🚀 Why Easy!Appointments
 
