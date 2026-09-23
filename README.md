@@ -92,6 +92,7 @@ sass --watch assets/css/themes/accesiblecolors.scss:assets/css/themes/accesiblec
 
 ---
 
+# The Next Paragraphs are a copy of the original documentation of the Easy!Appointments project
 
 
 <h4 align="center">

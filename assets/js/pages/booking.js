@@ -387,6 +387,8 @@ App.Pages.Booking = (function () {
 
             if (providerOptionCount === 2) {
                 $selectProvider.find('option[value=""]').remove();
+                //hide the selection box if there is only one provider available
+                $selectProvider.parent().prop('hidden', true);
             }
 
             // Add the "Any Provider" entry
@@ -689,13 +691,31 @@ App.Pages.Booking = (function () {
         const serviceId = $selectService.val();
         const providerId = $selectProvider.val();
 
-        $displayBookingSelection.text(`${lang('service')} │ ${lang('provider')}`); // Notice: "│" is a custom ASCII char
+        //hide provider name display when only one provider is available
+        const providerOptionCount = $selectProvider.find('option').length;
+
+        if(providerOptionCount === 1) {
+            $displayBookingSelection.text(`${lang('service')}`);
+        }
+        else
+        {
+            $displayBookingSelection.text(`${lang('service')} │ ${lang('provider')}`); // Notice: "│" is a custom ASCII char
+        }
 
         const serviceOptionText = serviceId ? $selectService.find('option:selected').text() : lang('service');
         const providerOptionText = providerId ? $selectProvider.find('option:selected').text() : lang('provider');
 
         if (serviceId || providerId) {
-            $displayBookingSelection.text(`${serviceOptionText} │ ${providerOptionText}`);
+
+            if(providerOptionCount === 1) {
+                $displayBookingSelection.text(`${serviceOptionText}`);
+            }
+            else
+            {
+                $displayBookingSelection.text(`${serviceOptionText} │ ${providerOptionText} | GINO`);
+            }
+
+            
         }
 
         if (!$availableHours.find('.selected-hour').text()) {
