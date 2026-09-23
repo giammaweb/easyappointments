@@ -39,7 +39,8 @@ To reapply these customizations on a future Easy!Appointments release, refer to 
    - **Description:** Now the generated log is written on the log files. Before, if email debug were enabled, the platform print a message at the end of the reservation page saying that something goes wrong, even when all were ok.
    - **Commit:** [`cf5d149`](https://github.com/giammaweb/easyappointments/commit/cf5d149)
 
-   
+6. **added italian translation for *calendar_lang* and *date_lang* files**
+   - **Commit:** [`cee8d73`](https://github.com/giammaweb/easyappointments/commit/cee8d73)
 
 
 ---
