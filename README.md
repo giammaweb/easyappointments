@@ -42,6 +42,9 @@ To reapply these customizations on a future Easy!Appointments release, refer to 
 6. **added italian translation for *calendar_lang* and *date_lang* files**
    - **Commit:** [`cee8d73`](https://github.com/giammaweb/easyappointments/commit/cee8d73)
 
+7. **added translation field for RESCHEDULE / CANCEL APPOINTMENT button for email sent to user when his appointment change and text description message field in case of bulk changes**
+   - **Description:** Added translation for the 'RESCHEDULE / CANCEL APPOINTMENT' button in the email sent to the user when an appointment is changed from the back office. Added a new description field to better explain that a change was made. This is also useful for bulk rescheduling, such as recovering from wrong app configurations that generate calendar overbooking.
+   - **Commit:** [`ea01323`](https://github.com/giammaweb/easyappointments/commit/ea01323)
 
 ---
 
