@@ -31,7 +31,8 @@ To reapply these customizations on a future Easy!Appointments release, refer to 
    - **Commit:** [`b5069a8`](https://github.com/giammaweb/easyappointments/commit/b5069a8)
 
 4. **Hided the povider selection when only one is available**
-   - **Description:** Changed the behaviour of the AJAX functions in the booking.js file (updateConfirmFrame and $selectService.on(“change”, (event))). Before update text in the header and display input select, the system count the available options and decide if display the providers or not
+   - **Description:** Changed the behaviour of the AJAX functions in the booking.js file (updateConfirmFrame and $selectService.on(“change”, (event))). Before update text in the header and display input select, the system count the available options and decide if display the providers or not.
+   PLEASE REMEMBER TO GENERATE AGAIN booking.min.js after change the file
    - **Commit:** [`dee9062`](https://github.com/giammaweb/easyappointments/commit/dee9062)
 
 
@@ -45,7 +46,6 @@ Install the **Dart Sass** compiler (or `sassc`) on your system:
 
 ```bash
 sudo apt update && sudo apt install sassc
-
 
 ```
 
@@ -96,6 +96,27 @@ sass --watch assets/css/themes/accesiblecolors.scss:assets/css/themes/accesiblec
 > - For custom themes (e.g., `accesiblecolors`), edit the base compiled CSS file (`.css`) by appending custom rules at the end, then regenerate the `.min.css` version via `cp` or `sassc`.
 
 ---
+
+### Custom JS Minification via Terminal
+
+#### 1. Requirement
+
+Install the **terser** minifier on your system:
+
+```bash
+sudo apt update && sudo apt install terser
+
+```
+
+Go to the folder that contain the js file to minify, remove the previous minified version and execute this command:
+
+```bash
+terser nome_file.js -o nome_file.min.js -c -m
+
+```
+after file creation, remember to give the correct permissions
+
+
 
 # The Next Paragraphs are a copy of the original documentation of the Easy!Appointments project
 

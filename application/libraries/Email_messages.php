@@ -259,6 +259,8 @@ class Email_messages
 
         $php_mailer->CharSet = 'UTF-8';
         $php_mailer->SMTPDebug = config('smtp_debug') ? SMTP::DEBUG_SERVER : null;
+        //send debug errors to log file instead of outputting them to the screen
+        $php_mailer->Debugoutput = 'error_log';
 
         if (config('protocol') === 'smtp') {
             $php_mailer->isSMTP();
