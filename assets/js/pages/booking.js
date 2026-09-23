@@ -712,10 +712,8 @@ App.Pages.Booking = (function () {
             }
             else
             {
-                $displayBookingSelection.text(`${serviceOptionText} │ ${providerOptionText} | GINO`);
-            }
-
-            
+                $displayBookingSelection.text(`${serviceOptionText} │ ${providerOptionText}`);
+            }            
         }
 
         if (!$availableHours.find('.selected-hour').text()) {
