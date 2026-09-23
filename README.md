@@ -35,6 +35,12 @@ To reapply these customizations on a future Easy!Appointments release, refer to 
    PLEASE REMEMBER TO GENERATE AGAIN booking.min.js after change the file
    - **Commit:** [`dee9062`](https://github.com/giammaweb/easyappointments/commit/dee9062)
 
+5. **modified the email_messages library to send the output log when debug is enabled to log files instead to print them at video**
+   - **Description:** Now the generated log is written on the log files. Before, if email debug were enabled, the platform print a message at the end of the reservation page saying that something goes wrong, even when all were ok.
+   - **Commit:** [`cf5d149`](https://github.com/giammaweb/easyappointments/commit/cf5d149)
+
+   
+
 
 ---
 
