@@ -30,6 +30,11 @@ To reapply these customizations on a future Easy!Appointments release, refer to 
    - **Description:** Added the `accesiblecolors.css` theme. Based on the corporate color set in the back office, it configures secondary colors to ensure higher contrast, aligning with WCAG accessibility guidelines.
    - **Commit:** [`b5069a8`](https://github.com/giammaweb/easyappointments/commit/b5069a8)
 
+4. **Hided the povider selection when only one is available**
+   - **Description:** Changed the behaviour of the AJAX functions in the booking.js file (updateConfirmFrame and $selectService.on(“change”, (event))). Before update text in the header and display input select, the system count the available options and decide if display the providers or not
+   - **Commit:** [`dee9062`](https://github.com/giammaweb/easyappointments/commit/dee9062)
+
+
 ---
 
 ### Custom Theme Compilation via Terminal
