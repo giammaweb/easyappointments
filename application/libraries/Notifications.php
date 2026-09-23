@@ -78,7 +78,10 @@ class Notifications
                 config(['language' => $customer['language']]);
                 $this->CI->lang->load('translations');
                 $subject = $manage_mode ? lang('appointment_details_changed') : lang('appointment_booked');
-                $message = $manage_mode ? '' : lang('thank_you_for_appointment');
+                //added a text message to notify user that his appointment is changed.
+                //is possible to customize the message in /application/language/[YOUR_LANGUAGE]/translations_lang.php file in the 'appointment_details_changed_message' property
+                $message = $manage_mode ? lang('appointment_details_changed_message') : lang('thank_you_for_appointment');
+
 
                 try {
                     $this->CI->email_messages->send_appointment_saved(

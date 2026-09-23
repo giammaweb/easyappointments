@@ -288,6 +288,20 @@ $customer_address = trim((string) ($customer['address'] ?? ''));
             margin: 20px 0;
         }
 
+        /* css style for better display info messages */
+        .message-box {
+            background-color: #f0f7ff;         /* A very pale blue background */
+            border: 1px solid #cce3ff;         /* A narrow border in a matching shade */
+            border-left: 5px solid #0066cc;    /* Left-hand impact side bar */
+            border-radius: 6px;                /* Rounded corners */
+            padding: 15px 20px;                /* Internal spacing to allow the text to ‘breathe’ */
+            margin: 15px 0;                    /* Distance from other elements */
+            color: #1a2533;                    /* Dark text colour for excellent readability */
+            font-family: Arial, sans-serif;    /* A standard font that is compatible everywhere */
+            font-size: 14px;
+            line-height: 1.6;                  /* Line spacing that is comfortable for reading */
+        }
+
         /* -------------------------------------
             RESPONSIVE AND MOBILE FRIENDLY STYLES
         ------------------------------------- */
@@ -412,7 +426,7 @@ $customer_address = trim((string) ($customer['address'] ?? ''));
                                             <?= $subject ?>
                                         </h1>
 
-                                        <p style="text-align: center;">
+                                        <p class="message-box">
                                             <?= $message ?>
                                         </p>
 
@@ -615,7 +629,7 @@ $customer_address = trim((string) ($customer['address'] ?? ''));
                                                                     <td>
                                                                         <a href="<?= e(
                                                                             $appointment_link,
-                                                                        ) ?>" target="_blank">Reschedule / Cancel Appointment</a>
+                                                                        ) ?>" target="_blank"><?= lang('appointment_reschedule_cancel') ?></a>
                                                                     </td>
                                                                 </tr>
                                                             </tbody>
