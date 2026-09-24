@@ -61,6 +61,8 @@ class Notifications
         array $settings,
         bool $manage_mode = false,
     ): void {
+
+
         try {
             $current_language = config('language');
 
