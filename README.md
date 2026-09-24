@@ -46,6 +46,9 @@ To reapply these customizations on a future Easy!Appointments release, refer to 
    - **Description:** Added translation for the 'RESCHEDULE / CANCEL APPOINTMENT' button in the email sent to the user when an appointment is changed from the back office. Added a new description field to better explain that a change was made. This is also useful for bulk rescheduling, such as recovering from wrong app configurations that generate calendar overbooking.
    - **Commit:** [`ea01323`](https://github.com/giammaweb/easyappointments/commit/ea01323)
 
+8. **added an SQL view for service capacity and provider overbooking detection**
+   - **Commit:** [`a8cc7d4`](https://github.com/giammaweb/easyappointments/commit/a8cc7d4)
+
 ---
 
 ### Custom Theme Compilation via Terminal
